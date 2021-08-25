@@ -39,7 +39,7 @@ public class AccountController {
         return new ResponseEntity<>(accountService.readAll(), HttpStatus.OK);
     }
 
-    @PutMapping(value = "/update")
+    @PutMapping(value = "/update/{id}")
     public ResponseEntity<Account> update(@PathVariable Long id, @RequestBody Account newAccountData){
         return new ResponseEntity<>(accountService.update(id, newAccountData), HttpStatus.OK);
     }

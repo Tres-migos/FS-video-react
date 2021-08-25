@@ -5,6 +5,9 @@ import com.tresmigos.fullstackvideo.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class VideoService {
 
@@ -23,8 +26,11 @@ public class VideoService {
         return repo.findById(id).get();
     }
 
-    public Iterable<Video> readAll(){
-        return repo.findAll();
+    public List<Video> readAll(){
+        Iterable<Video> allVideos = repo.findAll();
+        List<Video> result = new ArrayList<>();
+        allVideos.forEach(result::add);
+        return result;
     }
 
     public Video update(Long id, Video newVideoData){
