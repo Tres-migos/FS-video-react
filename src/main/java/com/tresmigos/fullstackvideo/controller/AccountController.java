@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@RequestMapping(value = "/account-controller")
 public class AccountController {
     private AccountRepository accountRepository;
 
@@ -25,6 +26,7 @@ public class AccountController {
     @PostMapping(value = "/createAcc")
     public ResponseEntity<Account> createAccount(@RequestBody Account account) {
         return new ResponseEntity<>(accountService.create(account), HttpStatus.CREATED);
+
     }
 
     @GetMapping(value = "/read/{id}")

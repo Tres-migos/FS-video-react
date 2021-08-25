@@ -15,8 +15,4 @@ public class VideoController {
     private VideoController(VideoService service) {
         this.service = service;
     }
-
-
-
-
 }
