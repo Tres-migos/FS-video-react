@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/account-controller")
+@RequestMapping(value = "/video-controller")
 public class VideoController {
+
     @Autowired
     private VideoService service;
 
-    private VideoController(VideoService serv) {
+
+    public VideoController(VideoService serv) {
         this.service = serv;
     }
 
