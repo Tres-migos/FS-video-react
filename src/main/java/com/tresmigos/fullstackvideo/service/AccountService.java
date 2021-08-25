@@ -34,7 +34,6 @@ public class AccountService {
 
     public Account update(Long id, Account newAccountData){
         Account accountInDb = read(id);
-        accountInDb.setId(newAccountData.getId());
         accountInDb.setUsername(newAccountData.getUsername());
         accountInDb.setPassword(newAccountData.getPassword());
         return  accountRepository.save(accountInDb);
