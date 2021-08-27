@@ -25,7 +25,7 @@ public class AwsServiceClient {
 
     private AmazonDynamoDBClientBuilder builder = AmazonDynamoDBClientBuilder.standard();
 
-    private BasicAWSCredentials awsCreds = new BasicAWSCredentials("AKIAYTOCM7274OJNTG5T", "wCFpa6VjWovm0tvPAfeLK3Pu9TaA3VtMj1IPqWnV");
+    private BasicAWSCredentials awsCreds = new BasicAWSCredentials("accessKey", "secretKey");
     private AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
             .withRegion(Regions.US_EAST_1)
             .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
