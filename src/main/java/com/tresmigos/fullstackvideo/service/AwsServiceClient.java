@@ -22,7 +22,7 @@ public class AwsServiceClient {
 
     private AmazonDynamoDBClientBuilder builder = AmazonDynamoDBClientBuilder.standard();
 
-    private BasicAWSCredentials awsCreds = new BasicAWSCredentials("accessKey", "secretKey");
+    private BasicAWSCredentials awsCreds = new BasicAWSCredentials("", "");
     private AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
             .withRegion(Regions.US_EAST_1)
             .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
@@ -40,8 +40,6 @@ public class AwsServiceClient {
             System.exit(1);
         }
     }
-
-
 
     public void putInBucketWithTag( String filePath, String videoName, String genre){
         PutObjectRequest putRequest = new PutObjectRequest("tres-migos-videos", videoName, new File(filePath));
@@ -84,6 +82,23 @@ public class AwsServiceClient {
         List<Tag> tagList = new ArrayList<>();
         taggingResult.getTagSet().forEach(tagList::add);
         return tagList;
+    }
+
+    public void deleteAllTags(String fileName){
+        DeleteObjectTaggingRequest deleteTags = new DeleteObjectTaggingRequest("tres-miogs-videos", fileName);
+        s3Client.deleteObjectTagging(deleteTags);
+    }
+
+    public void deleteTag(String fileName, String tagKey, String tagValue) {
+        Tag tag = new Tag(tagKey,tagValue);
+        List<Tag> tagList = getVideoTags(fileName);
+        if(!tagList.contains(tag)){
+            System.out.println(fileName+" does not have tag: "+tagKey+": "+tagValue);
+        } else {
+            tagList.remove(tag);
+            setTags(fileName,tagList);
+            System.out.println("Tag: "+tagKey+": "+tagValue+" was deleted from: "+fileName);
+        }
     }
 
 
