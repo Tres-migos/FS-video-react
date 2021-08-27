@@ -12,8 +12,14 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
+import com.amazonaws.services.s3.model.ObjectMetadata;
+import com.amazonaws.services.s3.model.ObjectTagging;
+import com.amazonaws.services.s3.model.PutObjectRequest;
+import com.amazonaws.services.s3.model.Tag;
 
-import java.io.File;
+import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AwsServiceClient {
 
@@ -28,13 +34,23 @@ public class AwsServiceClient {
     public AwsServiceClient() {
     }
 
-    public void putInBucket(String file_path, String key_name) {
+
+    public void putInBucket(String filePath, String fileName) {
         try {
-            s3Client.putObject("tres-migos-videos", key_name, new File(file_path));
+            s3Client.putObject("tres-migos-videos", fileName, new File(filePath));
         } catch (AmazonServiceException e) {
             System.err.println(e.getErrorMessage());
             System.exit(1);
         }
+    }
+
+    public void putInBucketWithTag( String filePath, String videoName, String genre){
+        PutObjectRequest putRequest = new PutObjectRequest("tres-migos-videos", videoName, new File(filePath));
+        List<Tag> tags = new ArrayList<Tag>();
+        tags.add(new Tag("genre", genre));
+        //tags.add(new Tag("Tag 2", "This is tag 2"));
+        putRequest.setTagging(new ObjectTagging(tags));
+        s3Client.putObject(putRequest);
     }
 
     public void deleteFromBucket(String object_key){
