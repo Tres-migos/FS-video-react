@@ -34,30 +34,29 @@ public class AwsServiceClient {
     public AwsServiceClient() {
     }
 
-    public void putInBucket(String filePath, String key_name, String genre, String actua) {
-        ObjectMetadata metadata = new ObjectMetadata();
-        metadata.setUserMetadata("genre",genre);
 
-
+    public void putInBucket(String filePath, String fileName) {
         try {
-            File fileToUpload = new File(filePath);
-            InputStream inStream = new FileInputStream(fileToUpload);
-            s3Client.putObject("tres-migos-videos", key_name, inStream, metadata);
-        } catch (AmazonServiceException | FileNotFoundException e) {
-            e.printStackTrace();
-            System.err.println(e.getMessage() );
+            s3Client.putObject("tres-migos-videos", fileName, new File(filePath));
+        } catch (AmazonServiceException e) {
+            System.err.println(e.getErrorMessage());
             System.exit(1);
         }
     }
 
-    public void putInBucketWithTag(String videoName, String filePath, String genre){
+    public void setTag() {
+        //s3Client.setObjectTagging();
+
+
+    }
+
+    public void putInBucketWithTag( String filePath, String videoName, String genre){
         PutObjectRequest putRequest = new PutObjectRequest("tres-migos-videos", videoName, new File(filePath));
         List<Tag> tags = new ArrayList<Tag>();
         tags.add(new Tag("genre", genre));
         //tags.add(new Tag("Tag 2", "This is tag 2"));
         putRequest.setTagging(new ObjectTagging(tags));
         s3Client.putObject(putRequest);
-        s3Client.setObjectTagging()
     }
 
     public void deleteFromBucket(String object_key){
