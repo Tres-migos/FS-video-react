@@ -12,10 +12,7 @@ import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.ObjectTagging;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.Tag;
+import com.amazonaws.services.s3.model.*;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -66,6 +63,27 @@ public class AwsServiceClient {
 
     public String getObjUrl(String objectKey){
         return s3Client.getUrl("tres-migos-videos", objectKey).toString();
+    }
+
+    public void setTags(String fileName, List<Tag> tagList){
+        ObjectTagging objectTags = new ObjectTagging(tagList);
+        SetObjectTaggingRequest setTagRequest = new SetObjectTaggingRequest("tres-migos-videos",fileName, objectTags );
+        s3Client.setObjectTagging(setTagRequest);
+    }
+
+    public void addTag(String fileName, String tagKey, String tagValue){
+        Tag tag = new Tag(tagKey,tagValue);
+        List<Tag> tagList = getVideoTags(fileName);
+        tagList.add(tag);
+        setTags(fileName,tagList);
+    }
+
+    public List<Tag> getVideoTags(String fileName){
+        GetObjectTaggingRequest fileTagRequest = new GetObjectTaggingRequest("tres-migos-videos",fileName);
+        GetObjectTaggingResult taggingResult = s3Client.getObjectTagging(fileTagRequest);
+        List<Tag> tagList = new ArrayList<>();
+        taggingResult.getTagSet().forEach(tagList::add);
+        return tagList;
     }
 
 
