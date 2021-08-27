@@ -44,12 +44,6 @@ public class AwsServiceClient {
         }
     }
 
-    public void setTag() {
-        //s3Client.setObjectTagging();
-
-
-    }
-
     public void putInBucketWithTag( String filePath, String videoName, String genre){
         PutObjectRequest putRequest = new PutObjectRequest("tres-migos-videos", videoName, new File(filePath));
         List<Tag> tags = new ArrayList<Tag>();
