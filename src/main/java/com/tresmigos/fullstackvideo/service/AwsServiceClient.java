@@ -37,6 +37,7 @@ public class AwsServiceClient {
         }
     }
 
+
     public void deleteFromBucket(String object_key){
         try {
             s3Client.deleteObject("tres-migos-videos", object_key);
