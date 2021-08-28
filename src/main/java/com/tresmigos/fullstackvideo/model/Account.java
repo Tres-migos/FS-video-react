@@ -1,25 +1,31 @@
 package com.tresmigos.fullstackvideo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 public class Account {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ACCOUNT_ID")
     private Long id;
     private String username;
     private String password;
 
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ACCOUNT_ID")
+    @OrderBy
+    Set<Video> videos;
+
     public Account() {
     }
 
-    public Account(Long id, String username, String password) {
+    public Account(Long id, String username, String password, Set<Video> videos) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.videos = videos;
     }
 
     public Long getId() {
@@ -44,5 +50,13 @@ public class Account {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Video> getVideos() {
+        return videos;
+    }
+
+    public void setVideos(Set<Video> videos) {
+        this.videos = videos;
     }
 }
