@@ -11,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/account-controller")
+@CrossOrigin(origins = "http://localhost:3001")
+@RequestMapping(value = "/account") // We don't need to state that it's a controller in the query because of redundancy.
 public class AccountController {
     private AccountRepository accountRepository;
 
@@ -23,10 +24,9 @@ public class AccountController {
         this.accountRepository = accountRepository;
     }
 
-    @PostMapping(value = "/createAcc")
+    @PostMapping(value = "/create")
     public ResponseEntity<Account> createAccount(@RequestBody Account account) {
         return new ResponseEntity<>(accountService.create(account), HttpStatus.CREATED);
-
     }
 
     @GetMapping(value = "/read/{id}")

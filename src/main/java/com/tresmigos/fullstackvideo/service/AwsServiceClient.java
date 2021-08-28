@@ -13,11 +13,13 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.*;
+import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class AwsServiceClient {
 
     private AmazonDynamoDBClientBuilder builder = AmazonDynamoDBClientBuilder.standard();
@@ -30,7 +32,6 @@ public class AwsServiceClient {
 
     public AwsServiceClient() {
     }
-
 
     public void putInBucket(String filePath, String fileName) {
         try {
@@ -59,8 +60,12 @@ public class AwsServiceClient {
         }
     }
 
-    public String getObjUrl(String objectKey){
-        return s3Client.getUrl("tres-migos-videos", objectKey).toString();
+    public String getObjUrl(String bucket, String objectKey){
+        return s3Client.getUrl(bucket, objectKey).toString();
+    }
+
+    public ObjectListing getListOfObjects(String bucketname) {
+        return s3Client.listObjects(bucketname);
     }
 
     public void setTags(String fileName, List<Tag> tagList){
