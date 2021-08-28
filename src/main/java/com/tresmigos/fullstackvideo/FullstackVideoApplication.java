@@ -8,7 +8,7 @@ public class FullstackVideoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(FullstackVideoApplication.class, args);
+
 	}
-	//comment
 
 }

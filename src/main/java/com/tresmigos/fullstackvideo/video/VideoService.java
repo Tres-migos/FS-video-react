@@ -1,7 +1,5 @@
-package com.tresmigos.fullstackvideo.service;
+package com.tresmigos.fullstackvideo.video;
 
-import com.tresmigos.fullstackvideo.model.Video;
-import com.tresmigos.fullstackvideo.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

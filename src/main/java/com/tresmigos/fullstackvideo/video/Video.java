@@ -1,4 +1,4 @@
-package com.tresmigos.fullstackvideo.model;
+package com.tresmigos.fullstackvideo.video;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

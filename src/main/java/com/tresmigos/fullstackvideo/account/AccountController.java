@@ -1,8 +1,5 @@
-package com.tresmigos.fullstackvideo.controller;
+package com.tresmigos.fullstackvideo.account;
 
-import com.tresmigos.fullstackvideo.model.Account;
-import com.tresmigos.fullstackvideo.repository.AccountRepository;
-import com.tresmigos.fullstackvideo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

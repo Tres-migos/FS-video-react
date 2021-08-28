@@ -1,6 +1,6 @@
-package com.tresmigos.fullstackvideo.repository;
+package com.tresmigos.fullstackvideo.video;
 
-import com.tresmigos.fullstackvideo.model.Video;
+import com.tresmigos.fullstackvideo.video.Video;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

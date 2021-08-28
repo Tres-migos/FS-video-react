@@ -30,7 +30,7 @@ public class FileStore {
                 new File(filePath));
 
         List<Tag> tags = new ArrayList<>();
-
+        
         optionalTags.ifPresent(map -> {
             if(!map.isEmpty()){
                 map.forEach((key,value) -> tags.add(new Tag(key,value)));

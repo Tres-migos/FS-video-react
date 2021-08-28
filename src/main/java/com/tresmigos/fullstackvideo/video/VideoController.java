@@ -1,9 +1,8 @@
-package com.tresmigos.fullstackvideo.controller;
+package com.tresmigos.fullstackvideo.video;
 
 
-import com.tresmigos.fullstackvideo.model.Video;
-import com.tresmigos.fullstackvideo.repository.VideoRepository;
-import com.tresmigos.fullstackvideo.service.VideoService;
+import com.tresmigos.fullstackvideo.video.Video;
+import com.tresmigos.fullstackvideo.video.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
