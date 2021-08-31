@@ -7,6 +7,14 @@ import org.mockito.MockitoAnnotations;
 import sun.jvm.hotspot.utilities.Assert;
 
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 
 class VideoTest {
     @InjectMocks
@@ -37,6 +45,7 @@ class VideoTest {
         //when
         String actual=video.getName();
         //then
+        //assertNull(actual);
         assertNull(actual);
     }
 

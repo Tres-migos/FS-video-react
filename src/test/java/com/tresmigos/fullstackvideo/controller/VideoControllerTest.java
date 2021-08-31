@@ -13,9 +13,15 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.when;
 
 class VideoControllerTest {
     @InjectMocks
@@ -31,9 +37,6 @@ class VideoControllerTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    void getVideoURL() {
-    }
 
     @Test
     void read() {
@@ -49,9 +52,30 @@ class VideoControllerTest {
 
     @Test
     void updateVideoById() {
+        //given
+        Video video = new Video();
+        ResponseEntity<Video> expected = new ResponseEntity<>(video,HttpStatus.OK);
+
+        //when
+        Mockito.when(service.update(5L, video)).thenReturn(video);
+
+        ResponseEntity<Video> actual = videoController.updateVideoById(5L,video);
+
+        //Then
+        assertEquals(expected,actual);
     }
 
     @Test
     void deleteVideoById() {
+        //given
+        Video video = new Video();
+        ResponseEntity<Video> expected = new ResponseEntity<>(video,HttpStatus.OK);
+
+        //when
+        Mockito.doReturn(video).when(service).delete(Mockito.anyLong());
+        ResponseEntity<Video> actual = videoController.deleteVideoById(Mockito.anyLong());
+
+        //Then
+        assertEquals(expected,actual);
     }
 }
