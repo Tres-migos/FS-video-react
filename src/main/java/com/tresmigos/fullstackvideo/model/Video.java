@@ -35,7 +35,7 @@ public class Video {
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public void setName(String title) {
@@ -51,7 +51,7 @@ public class Video {
     }
 
     public String getGenre() {
-        return genre;
+        return this.genre;
     }
 
     public void setGenre(String genre) {
@@ -59,7 +59,7 @@ public class Video {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 
     public void setDescription(String description) {
