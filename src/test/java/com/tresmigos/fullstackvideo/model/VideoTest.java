@@ -33,7 +33,6 @@ class VideoTest {
         //when
         Long actual=video.getId();
         //then
-        System.out.println(actual);
         assertEquals(expectedId,actual);
     }
 
@@ -45,7 +44,6 @@ class VideoTest {
         //when
         String actual=video.getName();
         //then
-        //assertNull(actual);
         assertNull(actual);
     }
 
