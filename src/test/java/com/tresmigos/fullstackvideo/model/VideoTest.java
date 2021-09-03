@@ -21,9 +21,9 @@ class VideoTest {
     void getId() {
         //given
         Long expectedId=5L;
-        video.setId(5L);
+        video.setVideoId(5L);
         //when
-        Long actual=video.getId();
+        Long actual=video.getVideoId();
         //then
         assertEquals(expectedId,actual);
     }
@@ -32,9 +32,9 @@ class VideoTest {
     void getName() {
         //given
         String expectedName="Indian";
-        video.setName(expectedName);
+        video.setTitle(expectedName);
         //when
-        String actual=video.getName();
+        String actual=video.getTitle();
         //then
         assertNull(actual);
     }
@@ -54,9 +54,9 @@ class VideoTest {
     void getGenre() {
         //given
         String expectedGenre="Indian";
-        video.setGenre(expectedGenre);
+        video.setCategory(expectedGenre);
         //when
-        String actual=video.getGenre();
+        String actual=video.getCategory();
         //then
         assertEquals(expectedGenre,actual);
     }
@@ -65,7 +65,7 @@ class VideoTest {
     void getDescription() {
         //given
         String expectedDesc="Classical Music";
-        video.setName(expectedDesc);
+        video.setDescription(expectedDesc);
         //when
         String actual=video.getDescription();
         //then

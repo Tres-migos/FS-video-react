@@ -13,11 +13,11 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping(value = "/video")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class VideoController {
 
     @Autowired
-    private VideoService service;
+    VideoService service;
 
     @Autowired
     private AwsServiceClient AWS_CLIENT;

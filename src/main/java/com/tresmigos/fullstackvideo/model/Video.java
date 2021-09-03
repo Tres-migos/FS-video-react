@@ -1,69 +1,42 @@
 package com.tresmigos.fullstackvideo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
 public class Video {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "VIDEO_ID")
-    private Long id;
+    private Long videoId;
 
     @Column(name = "ACCOUNT_ID")
     private Integer accountId;
-    private String name;
-    private String genre;
+
+    private String title;
+    private String category;
     private String description;
+    private String videoURL;
+    private String datePosted;
+
+    @OneToMany(mappedBy = "video")
+    @JsonIgnore
+    List<Comment> comments;
+
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "accountId")
+    private Account account;
 
     public Video() { }
 
-    public Video(Long id, String name, Integer accountId, String genre, String description) {
-        this.id = id;
-        this.name = name;
-        this.accountId = accountId;
-        this.genre = genre;
-        this.description = description;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String title) {
-        this.name = name;
-    }
-
-    public Integer getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getGenre() {
-        return this.genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    //tried this at 944
 }
