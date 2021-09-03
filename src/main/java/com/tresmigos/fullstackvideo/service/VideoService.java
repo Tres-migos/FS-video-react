@@ -35,10 +35,12 @@ public class VideoService {
 
     public Video update(Long id, Video newVideoData){
         Video original = repo.findById(id).get();
-        original.setName(newVideoData.getName());
+        original.setTitle(newVideoData.getTitle());
         original.setAccountId(newVideoData.getAccountId());
-        original.setGenre(newVideoData.getGenre());
+        original.setCategory(newVideoData.getCategory());
         original.setDescription(newVideoData.getDescription());
+        original.setDatePosted(newVideoData.getDatePosted());
+        original.setVideoURL(newVideoData.getVideoURL());
         return repo.save(original);
     }
 

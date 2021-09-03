@@ -1,7 +1,6 @@
 package com.tresmigos.fullstackvideo.service;
 
 import com.tresmigos.fullstackvideo.model.Account;
-import com.tresmigos.fullstackvideo.model.Video;
 import com.tresmigos.fullstackvideo.repository.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -80,7 +79,7 @@ class AccountServiceTest {
         id.add(5L);
         id.add(6L);
         Account account = new Account();
-        account.setId(5L);
+        account.setAccountId(5L);
         account.setUsername("Mark");
         account.setPassword("Finland");
 

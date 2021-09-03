@@ -27,9 +27,9 @@ class AccountTest {
     void getId() {
         //given
         Long expectedId=5L;
-        account.setId(5L);
+        account.setAccountId(5L);
         //when
-        Long actual=account.getId();
+        Long actual=account.getAccountId();
         //then
         assertEquals(expectedId,actual);
     }

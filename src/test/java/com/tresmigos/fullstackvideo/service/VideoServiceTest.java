@@ -79,7 +79,7 @@ class VideoServiceTest {
         id.add(5L);
         id.add(6L);
         Video video = new Video();
-        video.setGenre("rock");
+        video.setCategory("rock");
         video.setDescription("latest rock songs");
         video.setAccountId(5);
 

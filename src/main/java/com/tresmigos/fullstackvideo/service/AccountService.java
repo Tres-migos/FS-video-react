@@ -46,6 +46,6 @@ public class AccountService {
     }
 
     public Account delete(Account account){
-        return delete(account.getId());
+        return delete(account.getAccountId());
     }
 }
