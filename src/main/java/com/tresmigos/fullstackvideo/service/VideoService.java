@@ -38,6 +38,8 @@ public class VideoService {
         original.setName(newVideoData.getName());
         original.setGenre(newVideoData.getGenre());
         original.setDescription(newVideoData.getDescription());
+        original.setDatePosted(newVideoData.getDatePosted());
+        original.setVideoURL(newVideoData.getVideoURL());
         return repo.save(original);
     }
 

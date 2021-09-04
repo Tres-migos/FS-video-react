@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class CommentService {
 
-
     @Autowired
     private CommentRepository repo;
 
@@ -31,7 +30,6 @@ public class CommentService {
 
     public Comment update(Long id, Comment newComment){
         Comment commentInDb = read(id);
-
         return  repo.save(commentInDb);
     }
 
@@ -44,5 +42,4 @@ public class CommentService {
     public Comment delete(Comment comment){
         return delete(comment.getCommentId());
     }
-
 }

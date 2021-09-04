@@ -19,8 +19,10 @@ public class Account {
     @JsonIgnore
     private List<Video> videos;
 
+
     public Account() {
     }
+
 
     public Account(Long id, String username, String password) {
         this.id = id;
@@ -29,12 +31,12 @@ public class Account {
         //this.videos = videos;
     }
 
-    public Long getId() {
-        return id;
+    public Long getAccountId() {
+        return accountId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setAccountId(Long accountId) {
+        this.accountId = accountId;
     }
 
     public String getUsername() {

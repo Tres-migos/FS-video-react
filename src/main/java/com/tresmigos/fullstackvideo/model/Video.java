@@ -1,9 +1,19 @@
 package com.tresmigos.fullstackvideo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import com.tresmigos.fullstackvideo.model.Account;
 
+
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
 public class Video {
 
     @Id
@@ -50,13 +60,12 @@ public class Video {
         return this.genre;
     }
 
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
 
-    public String getDescription() {
-        return this.description;
-    }
+    @ManyToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "accountId")
+    private Account account;
+
+    public Video() { }
 
     public void setDescription(String description) {
         this.description = description;
