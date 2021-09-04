@@ -1,29 +1,33 @@
 package com.tresmigos.fullstackvideo.model;
 
 import javax.persistence.*;
+import com.tresmigos.fullstackvideo.model.Account;
 
 @Entity
 public class Video {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "VIDEO_ID")
+    //@Column(name = "VIDEO_ID")
     private Long id;
 
-    @Column(name = "ACCOUNT_ID")
-    private Integer accountId;
     private String name;
     private String genre;
     private String description;
 
+
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
+
     public Video() { }
 
-    public Video(Long id, String name, Integer accountId, String genre, String description) {
+    public Video(Long id, String name, String genre, String description, Account account) {
         this.id = id;
         this.name = name;
-        this.accountId = accountId;
         this.genre = genre;
         this.description = description;
+//        this.account = account;
     }
 
     public Long getId() {
@@ -42,14 +46,6 @@ public class Video {
         this.name = name;
     }
 
-    public Integer getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
-    }
-
     public String getGenre() {
         return this.genre;
     }
@@ -65,5 +61,14 @@ public class Video {
     public void setDescription(String description) {
         this.description = description;
     }
+
+//    public Account getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
+
     //tried this at 944
 }

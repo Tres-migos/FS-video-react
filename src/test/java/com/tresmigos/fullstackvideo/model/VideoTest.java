@@ -39,16 +39,16 @@ class VideoTest {
         assertNull(actual);
     }
 
-    @Test
-    void getAccountId() {
-        //given
-        Integer expectedAccId=54;
-        video.setAccountId(expectedAccId);
-        //when
-        Integer actual=video.getAccountId();
-        //then
-        assertEquals(expectedAccId,actual);
-    }
+//    @Test
+//    void getAccountId() {
+//        //given
+//        Integer expectedAccId=54;
+//        video.setAccountId(expectedAccId);
+//        //when
+//        Integer actual=video.getAccountId();
+//        //then
+//        assertEquals(expectedAccId,actual);
+//    }
 
     @Test
     void getGenre() {
