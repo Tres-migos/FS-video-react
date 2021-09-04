@@ -24,10 +24,10 @@ public class Main {
 //            System.out.println(tag.getValue());
 //        }
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
-        EntityManager em = emf.createEntityManager();
-
-        Account account = em.find(Account.class, 1);
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+//        EntityManager em = emf.createEntityManager();
+//
+//        Account account = em.find(Account.class, 1);
 
     }
 
