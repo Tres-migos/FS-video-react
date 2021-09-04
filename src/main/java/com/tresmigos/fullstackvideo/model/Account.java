@@ -32,11 +32,11 @@ public class Account {
     }
 
     public Long getAccountId() {
-        return accountId;
+        return id;
     }
 
     public void setAccountId(Long accountId) {
-        this.accountId = accountId;
+        this.id = accountId;
     }
 
     public String getUsername() {

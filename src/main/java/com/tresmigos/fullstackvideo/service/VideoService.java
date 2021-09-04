@@ -33,15 +33,15 @@ public class VideoService {
         return result;
     }
 
-    public Video update(Long id, Video newVideoData){
-        Video original = repo.findById(id).get();
-        original.setName(newVideoData.getName());
-        original.setGenre(newVideoData.getGenre());
-        original.setDescription(newVideoData.getDescription());
-        original.setDatePosted(newVideoData.getDatePosted());
-        original.setVideoURL(newVideoData.getVideoURL());
-        return repo.save(original);
-    }
+//    public Video update(Long id, Video newVideoData){
+//        Video original = repo.findById(id).get();
+//        original.setName(newVideoData.getName());
+//        original.setGenre(newVideoData.getGenre());
+//        original.setDescription(newVideoData.getDescription());
+//        original.setDatePosted(newVideoData.getDatePosted());
+//        original.setVideoURL(newVideoData.getVideoURL());
+//        return repo.save(original);
+//    }
 
     public Video delete(Long id){
         Video deleted = repo.findById(id).get();

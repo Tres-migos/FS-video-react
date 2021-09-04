@@ -14,6 +14,7 @@ import com.tresmigos.fullstackvideo.model.Account;
 @Setter
 @Getter
 @AllArgsConstructor
+@NoArgsConstructor
 public class Video {
 
     @Id
@@ -30,54 +31,34 @@ public class Video {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-    public Video() { }
-
-    public Video(Long id, String name, String genre, String description, Account account) {
-        this.id = id;
-        this.name = name;
-        this.genre = genre;
-        this.description = description;
-//        this.account = account;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String title) {
-        this.name = name;
-    }
-
-    public String getGenre() {
-        return this.genre;
-    }
-
-
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "accountId")
-    private Account account;
-
-    public Video() { }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-//    public Account getAccount() {
-//        return account;
+//    public Video() { }
+//
+//    public Video(Long id, String name, String genre, String description, Account account) {
+//        this.id = id;
+//        this.name = name;
+//        this.genre = genre;
+//        this.description = description;
+////        this.account = account;
 //    }
 //
-//    public void setAccount(Account account) {
-//        this.account = account;
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getName() {
+//        return this.name;
+//    }
+//
+//    public void setName(String title) {
+//        this.name = name;
+//    }
+//
+//    public String getGenre() {
+//        return this.genre;
 //    }
 
-    //tried this at 944
 }

@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-import sun.jvm.hotspot.utilities.Assert;
+
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,9 +29,9 @@ class VideoTest {
     void getId() {
         //given
         Long expectedId=5L;
-        video.setVideoId(5L);
+        video.setId(5L);
         //when
-        Long actual=video.getVideoId();
+        Long actual=video.getId();
         //then
         assertEquals(expectedId,actual);
     }
@@ -40,9 +40,9 @@ class VideoTest {
     void getName() {
         //given
         String expectedName="Indian";
-        video.setTitle(expectedName);
+        video.setGenre(expectedName);
         //when
-        String actual=video.getTitle();
+        String actual=video.getGenre();
         //then
         assertNull(actual);
     }
@@ -62,9 +62,9 @@ class VideoTest {
     void getGenre() {
         //given
         String expectedGenre="Indian";
-        video.setCategory(expectedGenre);
+        video.setGenre(expectedGenre);
         //when
-        String actual=video.getCategory();
+        String actual=video.getGenre();
         //then
         assertEquals(expectedGenre,actual);
     }

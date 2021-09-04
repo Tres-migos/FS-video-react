@@ -50,20 +50,20 @@ class VideoControllerTest {
         assertEquals(expected,actual);
     }
 
-    @Test
-    void updateVideoById() {
-        //given
-        Video video = new Video();
-        ResponseEntity<Video> expected = new ResponseEntity<>(video,HttpStatus.OK);
-
-        //when
-        Mockito.when(service.update(5L, video)).thenReturn(video);
-
-        ResponseEntity<Video> actual = videoController.updateVideoById(5L,video);
-
-        //Then
-        assertEquals(expected,actual);
-    }
+//    @Test
+//    void updateVideoById() {
+//        //given
+//        Video video = new Video();
+//        ResponseEntity<Video> expected = new ResponseEntity<>(video,HttpStatus.OK);
+//
+//        //when
+//        Mockito.when(service.update(5L, video)).thenReturn(video);
+//
+//        ResponseEntity<Video> actual = videoController.updateVideoById(5L,video);
+//
+//        //Then
+//        assertEquals(expected,actual);
+//    }
 
     @Test
     void deleteVideoById() {

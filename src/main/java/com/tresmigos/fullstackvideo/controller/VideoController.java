@@ -47,10 +47,10 @@ public class VideoController {
         return new ResponseEntity<>(service.read(id),HttpStatus.OK);
     }
 
-    @PutMapping(value = "/update/{id}")
-    public ResponseEntity<Video> updateVideoById(@PathVariable Long id, @RequestBody Video newVideo){
-        return new ResponseEntity<>(service.update(id, newVideo), HttpStatus.OK);
-    }
+//    @PutMapping(value = "/update/{id}")
+//    public ResponseEntity<Video> updateVideoById(@PathVariable Long id, @RequestBody Video newVideo){
+//        return new ResponseEntity<>(service.update(id, newVideo), HttpStatus.OK);
+//    }
 
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Video> deleteVideoById(@PathVariable Long id){
