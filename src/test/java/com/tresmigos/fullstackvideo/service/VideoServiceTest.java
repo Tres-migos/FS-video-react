@@ -81,7 +81,7 @@ class VideoServiceTest {
         Video video = new Video();
         video.setCategory("rock");
         video.setDescription("latest rock songs");
-        video.setAccountId(5);
+//        video.setAccountId(5);
 
 
         //when

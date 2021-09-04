@@ -1,31 +1,56 @@
 package com.tresmigos.fullstackvideo.model;
 
-
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
+
 @Entity
-@Setter
-@Getter
-@AllArgsConstructor
-@NoArgsConstructor
 public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long commentId;
+
     private String text;
     private Date datePosted;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
-    private Video video;
 
-    private Long videoId;
 
+
+
+    public Comment() {
+    }
+
+    public Comment(Long commentId, String text, Date datePosted) {
+        this.commentId = commentId;
+        this.text = text;
+        this.datePosted = datePosted;
+    }
+
+    public Long getCommentId() {
+        return commentId;
+    }
+
+    public void setCommentId(Long commentId) {
+        this.commentId = commentId;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public Date getDatePosted() {
+        return datePosted;
+    }
+
+    public void setDatePosted(Date datePosted) {
+        this.datePosted = datePosted;
+    }
 }

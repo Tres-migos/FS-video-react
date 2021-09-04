@@ -1,32 +1,34 @@
 package com.tresmigos.fullstackvideo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ACCOUNT_ID")
-    private Long accountId;
+    //@Column(name = "ACCOUNT_ID")
+    private Long id;
     private String username;
     private String password;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "ACCOUNT_ID")
-    @OrderBy
-    Set<Video> videos;
+    @OneToMany(mappedBy = "account")
+    @JsonIgnore
+    private List<Video> videos;
+
 
     public Account() {
     }
 
-    public Account(Long accountId, String username, String password, Set<Video> videos) {
-        this.accountId = accountId;
+
+    public Account(Long id, String username, String password) {
+        this.id = id;
         this.username = username;
         this.password = password;
-        this.videos = videos;
+        //this.videos = videos;
     }
 
     public Long getAccountId() {
@@ -53,11 +55,11 @@ public class Account {
         this.password = password;
     }
 
-    public Set<Video> getVideos() {
-        return videos;
-    }
-
-    public void setVideos(Set<Video> videos) {
-        this.videos = videos;
-    }
+//    public List<Video> getVideos() {
+//        return videos;
+//    }
+//
+//    public void setVideos(List<Video> videos) {
+//        this.videos = videos;
+//    }
 }

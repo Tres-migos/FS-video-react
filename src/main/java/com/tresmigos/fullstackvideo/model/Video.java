@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import com.tresmigos.fullstackvideo.model.Account;
+
 
 @Entity
 @Setter
@@ -16,22 +17,49 @@ import java.util.List;
 public class Video {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "VIDEO_ID")
-    private Long videoId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@Column(name = "VIDEO_ID")
+    private Long id;
 
-    @Column(name = "ACCOUNT_ID")
-    private Integer accountId;
-
-    private String title;
-    private String category;
+    private String name;
+    private String genre;
     private String description;
-    private String videoURL;
-    private String datePosted;
 
-    @OneToMany(mappedBy = "video")
-    @JsonIgnore
-    List<Comment> comments;
+
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
+
+    public Video() { }
+
+    public Video(Long id, String name, String genre, String description, Account account) {
+        this.id = id;
+        this.name = name;
+        this.genre = genre;
+        this.description = description;
+//        this.account = account;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public void setName(String title) {
+        this.name = name;
+    }
+
+    public String getGenre() {
+        return this.genre;
+    }
+
 
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "accountId")
@@ -39,4 +67,17 @@ public class Video {
 
     public Video() { }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+//    public Account getAccount() {
+//        return account;
+//    }
+//
+//    public void setAccount(Account account) {
+//        this.account = account;
+//    }
+
+    //tried this at 944
 }
