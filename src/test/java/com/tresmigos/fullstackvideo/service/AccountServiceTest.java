@@ -79,7 +79,7 @@ class AccountServiceTest {
         id.add(5L);
         id.add(6L);
         Account account = new Account();
-        account.setAccountId(5L);
+        account.setId(5L);
         account.setUsername("Mark");
         account.setPassword("Finland");
 

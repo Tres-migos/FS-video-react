@@ -1,13 +1,15 @@
 package com.tresmigos.fullstackvideo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import com.tresmigos.fullstackvideo.model.Account;
+import java.util.List;
 
 
 @Entity
@@ -28,37 +30,15 @@ public class Video {
 
 
     @ManyToOne
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    @JsonBackReference
     private Account account;
 
-//    public Video() { }
-//
-//    public Video(Long id, String name, String genre, String description, Account account) {
-//        this.id = id;
-//        this.name = name;
-//        this.genre = genre;
-//        this.description = description;
-////        this.account = account;
-//    }
-//
-//    public Long getId() {
-//        return id;
-//    }
-//
-//    public void setId(Long id) {
-//        this.id = id;
-//    }
-//
-//    public String getName() {
-//        return this.name;
-//    }
-//
-//    public void setName(String title) {
-//        this.name = name;
-//    }
-//
-//    public String getGenre() {
-//        return this.genre;
-//    }
+
+    @OneToMany(targetEntity = Comment.class,
+    cascade = CascadeType.ALL)
+    @JoinColumn(name = "video_key",
+    referencedColumnName = "id")
+    @JsonManagedReference
+    private List<Comment> comments;
 
 }

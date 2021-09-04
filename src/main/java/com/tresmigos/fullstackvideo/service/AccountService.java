@@ -2,6 +2,7 @@ package com.tresmigos.fullstackvideo.service;
 
 import com.tresmigos.fullstackvideo.model.Account;
 import com.tresmigos.fullstackvideo.repository.AccountRepository;
+import com.tresmigos.fullstackvideo.repository.VideoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,12 +12,10 @@ import java.util.List;
 @Service
 public class AccountService {
 
-    private AccountRepository accountRepository;
-
     @Autowired
-    public AccountService(AccountRepository accountRepository){
-        this.accountRepository = accountRepository;
-    }
+    private VideoRepository videoRepository;
+    @Autowired
+    private AccountRepository accountRepository;
 
     public Account create(Account account){
         return accountRepository.save(account);
@@ -25,10 +24,14 @@ public class AccountService {
     public Account read(Long id){
         return accountRepository.findById(id).orElse(null);
     }
+
     public List<Account> readAll(){
         Iterable<Account> accountIterable = accountRepository.findAll();
         List<Account> result = new ArrayList<>();
         accountIterable.forEach(result :: add);
+        for(Account account: result){
+            account.setVideos(videoRepository.findByUser(account.getId()));
+        }
         return  result;
     }
 
@@ -46,6 +49,6 @@ public class AccountService {
     }
 
     public Account delete(Account account){
-        return delete(account.getAccountId());
+        return delete(account.getId());
     }
 }
