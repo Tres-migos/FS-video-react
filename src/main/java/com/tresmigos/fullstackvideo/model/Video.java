@@ -32,13 +32,13 @@ public class Video {
     private Account account;
 
 //    public Video() { }
-//
+
 //    public Video(Long id, String name, String genre, String description, Account account) {
 //        this.id = id;
 //        this.name = name;
 //        this.genre = genre;
 //        this.description = description;
-////        this.account = account;
+//        this.account = account;
 //    }
 //
 //    public Long getId() {
@@ -57,8 +57,21 @@ public class Video {
 //        this.name = name;
 //    }
 //
+//    public void setGenre(String genre){
+//        this.genre=genre;
+//    }
+//
 //    public String getGenre() {
 //        return this.genre;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public Video setDescription(String description) {
+//        this.description = description;
+//        return this;
 //    }
 
 }

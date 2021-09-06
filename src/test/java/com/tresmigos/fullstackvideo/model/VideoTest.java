@@ -25,58 +25,58 @@ class VideoTest {
         MockitoAnnotations.initMocks(this);
     }
 
-    @Test
-    void getId() {
-        //given
-        Long expectedId=5L;
-        video.setId(5L);
-        //when
-        Long actual=video.getId();
-        //then
-        assertEquals(expectedId,actual);
-    }
-
-    @Test
-    void getName() {
-        //given
-        String expectedName="Indian";
-        video.setGenre(expectedName);
-        //when
-        String actual=video.getGenre();
-        //then
-        assertNull(actual);
-    }
-
 //    @Test
-//    void getAccountId() {
+//    void getId() {
 //        //given
-//        Integer expectedAccId=54;
-//        video.setAccountId(expectedAccId);
+//        Long expectedId=5L;
+//        video.setId(5L);
 //        //when
-//        Integer actual=video.getAccountId();
+//        Long actual=video.getId();
 //        //then
-//        assertEquals(expectedAccId,actual);
+//        assertEquals(expectedId,actual);
 //    }
-
-    @Test
-    void getGenre() {
-        //given
-        String expectedGenre="Indian";
-        video.setGenre(expectedGenre);
-        //when
-        String actual=video.getGenre();
-        //then
-        assertEquals(expectedGenre,actual);
-    }
-
-    @Test
-    void getDescription() {
-        //given
-        String expectedDesc="Classical Music";
-        video.setDescription(expectedDesc);
-        //when
-        String actual=video.getDescription();
-        //then
-        assertNull(actual);
-    }
+//
+//    @Test
+//    void getName() {
+//        //given
+//        String expectedName="Indian";
+//        video.setGenre(expectedName);
+//        //when
+//        String actual=video.getGenre();
+//        //then
+//        assertNull(actual);
+//    }
+//
+////    @Test
+////    void getAccountId() {
+////        //given
+////        Integer expectedAccId=54;
+////        video.setAccountId(expectedAccId);
+////        //when
+////        Integer actual=video.getAccountId();
+////        //then
+////        assertEquals(expectedAccId,actual);
+////    }
+//
+//    @Test
+//    void getGenre() {
+//        //given
+//        String expectedGenre="Indian";
+//        video.setGenre(expectedGenre);
+//        //when
+//        String actual=video.getGenre();
+//        //then
+//        assertEquals(expectedGenre,actual);
+//    }
+//
+//    @Test
+//    void getDescription() {
+//        //given
+//        String expectedDesc="Classical Music";
+//        video.setDescription(expectedDesc);
+//        //when
+//        String actual=video.getDescription();
+//        //then
+//        assertNull(actual);
+//    }
 }
