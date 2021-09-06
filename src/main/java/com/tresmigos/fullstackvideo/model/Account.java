@@ -30,4 +30,9 @@ public class Account {
     @JsonManagedReference
     private List<Video> videos;
 
+
+    public void addVideo(Video video){
+        videos.add(video);
+    }
+
 }

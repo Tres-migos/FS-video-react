@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/video")
 @CrossOrigin(origins = "*")
@@ -31,16 +33,27 @@ public class VideoController {
         return new ResponseEntity<ObjectListing>(AWS_CLIENT.getListOfObjects("tres-migos-videos"), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/readall")
+    public ResponseEntity<List<Video>> getAllVideos() {
+        return new ResponseEntity<List<Video>>(service.readAll(), HttpStatus.OK);
+    }
+
+
     @GetMapping(value = "/{bucket}/{objectKey}")
     public ResponseEntity<String> getVideoURL(@PathVariable String bucket, @PathVariable String objectKey) {
         return new ResponseEntity<String>(AWS_CLIENT.getObjUrl(bucket, objectKey), HttpStatus.OK);
     }
 
-//    @PostMapping(value = "/upload")
-//    public ResponseEntity<Video> uploadVideo(@RequestParam("file") MultipartFile file, @ModelAttribute Video video) {
-//        System.out.println(file);
-//        return new ResponseEntity<>(service.create(video), HttpStatus.CREATED);
-//    }
+    @PostMapping(value = "/create")
+    public ResponseEntity<Video> createVideo(@RequestBody Video video){
+        return new ResponseEntity<>(service.create(video), HttpStatus.CREATED);
+    }
+
+    @PostMapping(value = "/upload")
+    public ResponseEntity<Video> uploadVideo(@RequestParam("file") MultipartFile file, @ModelAttribute Video video) {
+        System.out.println(file);
+        return new ResponseEntity<>(service.create(video), HttpStatus.CREATED);
+    }
 
     @GetMapping(value = "/getVideo/{id}")
     public ResponseEntity<Video> read(@PathVariable Long id) {

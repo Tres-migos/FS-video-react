@@ -16,8 +16,7 @@ public class AwsClientConfig {
     @Bean
     public AmazonS3 s3() {
         AWSCredentials credentials = new BasicAWSCredentials(
-                "",
-                "");
+                "", "");
         return AmazonS3ClientBuilder
                 .standard()
                 .withRegion(Regions.US_EAST_1)

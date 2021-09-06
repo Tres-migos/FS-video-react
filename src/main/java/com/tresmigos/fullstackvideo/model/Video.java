@@ -20,13 +20,14 @@ import java.util.List;
 public class Video {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     //@Column(name = "VIDEO_ID")
     private Long id;
 
     private String name;
     private String genre;
     private String description;
+    private String url;
 
 
     @ManyToOne

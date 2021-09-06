@@ -1,6 +1,7 @@
 package com.tresmigos.fullstackvideo.controller;
 
 import com.tresmigos.fullstackvideo.model.Account;
+import com.tresmigos.fullstackvideo.model.Video;
 import com.tresmigos.fullstackvideo.repository.AccountRepository;
 import com.tresmigos.fullstackvideo.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,11 @@ public class AccountController {
         return new ResponseEntity<>(accountService.read(id), HttpStatus.OK);
     }
 
+//    @GetMapping(value = "/findAccount")
+//    public ResponseEntity<Account> findAccount() {
+//        return new ResponseEntity<>()
+//    }
+
     @GetMapping(value = "/readAll")
     public ResponseEntity<List<Account>> readAll(){
         return new ResponseEntity<>(accountService.readAll(), HttpStatus.OK);
@@ -47,6 +53,11 @@ public class AccountController {
     @DeleteMapping(value = "/delete/{id}")
     public ResponseEntity<Account> delete(@PathVariable Long id){
         return new ResponseEntity<>(accountService.delete(id), HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping(value = "/addVideo/{id}")
+    public ResponseEntity<Account> addVideo(@PathVariable Long id, @RequestBody Video video){
+        return new ResponseEntity<>(accountService.addVideo(id,video), HttpStatus.OK);
     }
 
 }
