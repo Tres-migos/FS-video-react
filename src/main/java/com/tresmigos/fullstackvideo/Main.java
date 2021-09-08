@@ -5,8 +5,12 @@ import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.Tag;
 import com.tresmigos.fullstackvideo.filestore.FileStore;
+import com.tresmigos.fullstackvideo.model.Account;
 import com.tresmigos.fullstackvideo.service.AwsServiceClient;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import java.util.List;
 
 public class Main {
@@ -19,6 +23,11 @@ public class Main {
 //        for(Tag tag: tags){
 //            System.out.println(tag.getValue());
 //        }
+
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory("pu");
+//        EntityManager em = emf.createEntityManager();
+//
+//        Account account = em.find(Account.class, 1);
 
     }
 

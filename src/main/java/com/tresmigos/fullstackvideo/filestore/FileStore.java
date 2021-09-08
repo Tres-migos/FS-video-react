@@ -43,9 +43,7 @@ public class FileStore {
         } catch(AmazonServiceException e){
             throw new IllegalStateException("Failed to store file to S3", e);
         }
-
-
-
+//hey
     }
 
 

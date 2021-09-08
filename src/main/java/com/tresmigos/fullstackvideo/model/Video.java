@@ -1,69 +1,77 @@
 package com.tresmigos.fullstackvideo.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
+import com.tresmigos.fullstackvideo.model.Account;
+
 
 @Entity
+@Setter
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Video {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "VIDEO_ID")
+    //@Column(name = "VIDEO_ID")
     private Long id;
 
-    @Column(name = "ACCOUNT_ID")
-    private Integer accountId;
     private String name;
     private String genre;
     private String description;
 
-    public Video() { }
 
-    public Video(Long id, String name, Integer accountId, String genre, String description) {
-        this.id = id;
-        this.name = name;
-        this.accountId = accountId;
-        this.genre = genre;
-        this.description = description;
-    }
+    @ManyToOne
+    @JoinColumn(name = "account_id", referencedColumnName = "id")
+    private Account account;
 
-    public Long getId() {
-        return id;
-    }
+//    public Video() { }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+//    public Video(Long id, String name, String genre, String description, Account account) {
+//        this.id = id;
+//        this.name = name;
+//        this.genre = genre;
+//        this.description = description;
+//        this.account = account;
+//    }
+//
+//    public Long getId() {
+//        return id;
+//    }
+//
+//    public void setId(Long id) {
+//        this.id = id;
+//    }
+//
+//    public String getName() {
+//        return this.name;
+//    }
+//
+//    public void setName(String title) {
+//        this.name = name;
+//    }
+//
+//    public void setGenre(String genre){
+//        this.genre=genre;
+//    }
+//
+//    public String getGenre() {
+//        return this.genre;
+//    }
+//
+//    public String getDescription() {
+//        return description;
+//    }
+//
+//    public Video setDescription(String description) {
+//        this.description = description;
+//        return this;
+//    }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public void setName(String title) {
-        this.name = name;
-    }
-
-    public Integer getAccountId() {
-        return accountId;
-    }
-
-    public void setAccountId(Integer accountId) {
-        this.accountId = accountId;
-    }
-
-    public String getGenre() {
-        return this.genre;
-    }
-
-    public void setGenre(String genre) {
-        this.genre = genre;
-    }
-
-    public String getDescription() {
-        return this.description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-    //tried this at 944
 }
