@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
 class AccountServiceTest {
@@ -50,7 +50,7 @@ class AccountServiceTest {
 
         //when
         when(repository.findById(anyLong())).thenReturn(Optional.of(expected));
-        Account Actual =accountService.read(Mockito.anyLong());
+        Account Actual =accountService.read(anyLong());
 
         //Then
         assertEquals(expected,Actual);
@@ -88,7 +88,7 @@ class AccountServiceTest {
         when(repository.findById(anyLong())).thenReturn(Optional.of(account));
         when(repository.save(account)).thenReturn(account);
 
-        Account actual = accountService.update(Mockito.anyLong(),account);
+        Account actual = accountService.update(anyLong(),account);
 
         //Then
         assertEquals(account,actual);

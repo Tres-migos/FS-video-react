@@ -1,8 +1,6 @@
 package com.tresmigos.fullstackvideo.service;
 
-import com.tresmigos.fullstackvideo.model.Account;
 import com.tresmigos.fullstackvideo.model.Comment;
-import com.tresmigos.fullstackvideo.repository.AccountRepository;
 import com.tresmigos.fullstackvideo.repository.CommentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,8 +14,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyLong;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
 class CommentServiceTest {
@@ -54,7 +52,7 @@ class CommentServiceTest {
 
         //when
         when(repository.findById(anyLong())).thenReturn(Optional.of(expected));
-        Comment actual =commentService.read(Mockito.anyLong());
+        Comment actual =commentService.read(anyLong());
 
         //Then
         assertEquals(expected,actual);
@@ -91,7 +89,7 @@ class CommentServiceTest {
         when(repository.findById(anyLong())).thenReturn(Optional.of(comment));
         when(repository.save(comment)).thenReturn(comment);
 
-        Comment actual = commentService.update(Mockito.anyLong(),comment);
+        Comment actual = commentService.update(anyLong(),comment);
 
         //Then
         assertEquals(comment,actual);

@@ -1,9 +1,8 @@
 package com.tresmigos.fullstackvideo.controller;
 
-import com.google.gson.Gson;
-import com.tresmigos.fullstackvideo.model.Account;
+
 import com.tresmigos.fullstackvideo.model.Comment;
-import com.tresmigos.fullstackvideo.service.AccountService;
+import com.tresmigos.fullstackvideo.service.CommentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -14,33 +13,33 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-public class AccountControllerTest {
+public class CommentControllerTest {
     @Autowired
     MockMvc mockMvc;
 
     @InjectMocks
-    AccountController accountController;
+    CommentController commentController;
 
     @Mock
-    AccountService service;
+    CommentService service;
 
     private Gson gson;
 
-    AccountControllerTest() {
+    CommentControllerTest() {
     }
 
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        mockMvc = MockMvcBuilders.standaloneSetup(accountController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(commentController).build();
         gson = new Gson();
 
     }
@@ -48,59 +47,59 @@ public class AccountControllerTest {
     @Test
     void read() throws Exception {
 
-        Account account = new Account();
+        Comment comment = new Comment();
 
-        Mockito.doReturn(account).when(service).read(Mockito.anyLong());
+        Mockito.doReturn(comment).when(service).read(Mockito.anyLong());
 
-        mockMvc.perform(get("/account/read{id}",5L)).andExpect(status().isOk());
+        mockMvc.perform(get("/comment/{id}",5L)).andExpect(status().isOk());
     }
 
     @Test
     void readAll() throws Exception {
 
-        List<Comment> accountList = new ArrayList<>();
+        List<Comment> commentList = new ArrayList<>();
 
-        Mockito.doReturn(accountList).when(service).readAll();
+        Mockito.doReturn(commentList).when(service).readAll();
 
-        mockMvc.perform(get("/account/readAll",5L)).andExpect(status().isOk());
+        mockMvc.perform(get("/comment/allComment",5L)).andExpect(status().isOk());
 
     }
 
     @Test
     void create() throws Exception {
 
-        Account account = new Account();
+        Comment comment = new Comment();
 
-        Mockito.doReturn(account).when(service).create(account);
+        Mockito.doReturn(comment).when(service).create(comment);
 
-        mockMvc.perform(post("/account/create")
+        mockMvc.perform(post("/comment/")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(gson.toJson(account)))
+                .content(gson.toJson(comment)))
                 .andExpect(status().isCreated());
     }
 
     @Test
     void updateTest() throws Exception {
 
-        Account account = new Account();
+        Comment comment = new Comment();
 
-        Mockito.when(service.update(5L, account)).thenReturn(account);
+        Mockito.when(service.update(5L, comment)).thenReturn(comment);
 
 
-        mockMvc.perform(put("/account/update/{id}",5L)
+        mockMvc.perform(put("/comment/update/{id}",5L)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content(gson.toJson(account)))
+                .content(gson.toJson(comment)))
                 .andExpect(status().isOk());
     }
 
     @Test
     void deleteTest() throws Exception {
 
-        Account account = new Account();
+        Comment comment = new Comment();
 //
-        Mockito.doReturn(account).when(service).delete(Mockito.anyLong());
+        Mockito.doReturn(comment).when(service).delete(Mockito.anyLong());
 
-        mockMvc.perform(delete("/account/delete/{id}", 5L))
+        mockMvc.perform(delete("/comment/delete/{id}", 5L))
                 .andExpect(status().isOk());
 
     }
