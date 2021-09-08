@@ -29,6 +29,13 @@ public class AccountController {
         return new ResponseEntity<>(accountService.create(account), HttpStatus.CREATED);
     }
 
+
+    @GetMapping(value = "/login")
+    public ResponseEntity<Account> login(@RequestParam String username, @RequestParam String password) {
+        return new ResponseEntity<>(accountService.login(username, password), HttpStatus.ACCEPTED);
+    }
+
+
     @GetMapping(value = "/read/{id}")
     public ResponseEntity<Account> read(@PathVariable Long id){
         return new ResponseEntity<>(accountService.read(id), HttpStatus.OK);
