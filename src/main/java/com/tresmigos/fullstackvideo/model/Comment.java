@@ -18,9 +18,6 @@ public class Comment {
     private Date datePosted;
 
 
-
-
-
     public Comment() {
     }
 
