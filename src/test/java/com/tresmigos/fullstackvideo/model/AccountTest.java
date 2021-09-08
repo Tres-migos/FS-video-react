@@ -7,11 +7,9 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class AccountTest {
 
@@ -57,19 +55,19 @@ class AccountTest {
         //then
         assertEquals(expected,actual);
     }
-//    @Test
-//    void getVideos() {
-//        //given
-//        Video v1=new Video();
-//        Video v2=new Video();
-//        List<Video> expected = new ArrayList<>();
-//        expected.add(v1);
-//        expected.add(v2);
-//        account.setVideos(expected);
-//
-//        //when
-//        List<Video> actual=account.getVideos();
-//        //then
-//        assertEquals(expected,actual);
-//    }
+    @Test
+    void getVideos() {
+        //given
+        Video v1=new Video();
+        Video v2=new Video();
+        List<Video> expected = new ArrayList<>();
+        expected.add(v1);
+        expected.add(v2);
+        account.setVideos(expected);
+
+        //when
+        List<Video> actual=account.getVideos();
+        //then
+        assertEquals(expected,actual);
+    }
 }

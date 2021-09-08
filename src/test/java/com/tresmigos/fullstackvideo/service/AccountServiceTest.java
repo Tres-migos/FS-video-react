@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Matchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -105,5 +105,31 @@ class AccountServiceTest {
 
         //Then
         assertEquals(account,actual);
+    }
+
+    @Test
+    void testDelete() {
+        //given
+        Account account = new Account();
+
+        //when
+        Mockito.when(repository.findById(4L)).thenReturn(Optional.of(account));
+        Account actual = accountService.delete(4L);
+
+        //Then
+        assertEquals(account,actual);
+    }
+
+    @Test
+    void login(){
+        //given
+        Account account=new Account();
+        Account expected=new Account();
+        //when
+        Mockito.doReturn(expected).when(repository)
+                .findByUsernameAndPassword("leon","hunter");
+        Account actual=accountService.login("leon","hunter");
+        //then
+        assertEquals(expected,actual);
     }
 }
