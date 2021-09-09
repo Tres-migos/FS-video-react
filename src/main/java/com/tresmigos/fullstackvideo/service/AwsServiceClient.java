@@ -1,5 +1,6 @@
 package com.tresmigos.fullstackvideo.service;
 
+import ch.qos.logback.classic.Logger;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.auth.profile.ProfileCredentialsProvider;
@@ -13,11 +14,16 @@ import com.amazonaws.AmazonServiceException;
 import com.amazonaws.regions.Regions;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.*;
+import com.tresmigos.fullstackvideo.model.Video;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.logging.ErrorManager;
 
 @Service
 public class AwsServiceClient {
@@ -25,7 +31,7 @@ public class AwsServiceClient {
     private AmazonDynamoDBClientBuilder builder = AmazonDynamoDBClientBuilder.standard();
 
     private BasicAWSCredentials awsCreds = new BasicAWSCredentials
-            ("AKIAYTOCM7274XKEZVGV", "/hz3hkBUVC5wzFBwoue3ToBBinudaVh+NV8OQdYp");
+            ("AKIAYTOCM727UGWXVJ7V", "3VOKr9shndWpKtuYYDNGC0rdb9a7s0+j5CFvRrkV");
     private AmazonS3 s3Client = AmazonS3ClientBuilder.standard()
             .withRegion(Regions.US_EAST_1)
             .withCredentials(new AWSStaticCredentialsProvider(awsCreds))
@@ -33,6 +39,9 @@ public class AwsServiceClient {
 
     public AwsServiceClient() {
     }
+
+    @Autowired
+    private VideoService videoService;
 
     public void putInBucket(String filePath, String fileName) {
         try {
@@ -105,6 +114,33 @@ public class AwsServiceClient {
             setTags(fileName,tagList);
             System.out.println("Tag: "+tagKey+": "+tagValue+" was deleted from: "+fileName);
         }
+    }
+
+    public void uploadFile(MultipartFile file) {
+//        Video video = new Video();
+//        video.setName(name);
+//        video.setGenre(genre);
+//        video.setDescription(description);
+//        Long videoId = videoService.create(video).getId();
+
+        File fileObj = convertMultiPartFileToFile(file);
+        String name = fileObj.getName();
+        s3Client.putObject(
+                new PutObjectRequest("tres-migos-videos", name, fileObj)
+        );
+        fileObj.delete(); // delete so it doesn't keep adding it
+    }
+
+    public File convertMultiPartFileToFile(MultipartFile file) {
+        File convertedFile = new File(file.getOriginalFilename());
+        try (FileOutputStream fos = new FileOutputStream(convertedFile)) {
+            fos.write(file.getBytes());
+        } catch (IOException e) {
+            ErrorManager log = new ErrorManager();
+            log.error("Error converting multipartFile to file", e,5);
+        }
+
+        return convertedFile;
     }
 
 
