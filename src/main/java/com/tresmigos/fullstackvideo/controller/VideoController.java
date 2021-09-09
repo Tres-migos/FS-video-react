@@ -36,11 +36,10 @@ public class VideoController {
         return new ResponseEntity<String>(AWS_CLIENT.getObjUrl(bucket, objectKey), HttpStatus.OK);
     }
 
-//    @PostMapping(value = "/upload")
-//    public ResponseEntity<Video> uploadVideo(@RequestParam("file") MultipartFile file, @ModelAttribute Video video) {
-//        System.out.println(file);
-//        return new ResponseEntity<>(service.create(video), HttpStatus.CREATED);
-//    }
+    @PostMapping(value = "/upload")
+    public void uploadVideo(@RequestParam("file") MultipartFile file) {
+        AWS_CLIENT.uploadFile(file);
+    }
 
     @GetMapping(value = "/getVideo/{id}")
     public ResponseEntity<Video> read(@PathVariable Long id) {

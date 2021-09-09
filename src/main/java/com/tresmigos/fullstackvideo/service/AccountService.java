@@ -23,7 +23,10 @@ public class AccountService {
     }
 
     public Account login(String username, String password) {
-        return accountRepository.findByUsernameAndPassword(username, password);
+        if(accountRepository.findByUsernameAndPassword(username, password)!= null){
+            return accountRepository.findByUsernameAndPassword(username, password);
+        }
+        return null;
     }
 
 
